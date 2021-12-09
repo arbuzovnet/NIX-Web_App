@@ -1,16 +1,17 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL.Models
 {
     public class ShoppingCart
     {
-        public int ShoppingCartId { get; set; }
+        [Key]
+        public int UserId { get; set; }
+        [Range(1, 30)]
+        public int Count { get; set; }                  // Количество товара в корзине
+
+        public List<Product> Products { get; set; }
+
         public Client Client { get; set; }
-        public Product Product { get; set; }
-        public int Number { get; set; }
     }
 }

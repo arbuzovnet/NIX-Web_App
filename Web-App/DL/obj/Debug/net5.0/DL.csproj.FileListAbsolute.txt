@@ -1,0 +1,12 @@
+D:\NIX\NIX-Web_App\Web-App\DL\bin\Debug\net5.0\DL.deps.json
+D:\NIX\NIX-Web_App\Web-App\DL\bin\Debug\net5.0\DL.dll
+D:\NIX\NIX-Web_App\Web-App\DL\bin\Debug\net5.0\ref\DL.dll
+D:\NIX\NIX-Web_App\Web-App\DL\bin\Debug\net5.0\DL.pdb
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.csproj.AssemblyReference.cache
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.GeneratedMSBuildEditorConfig.editorconfig
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.AssemblyInfoInputs.cache
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.AssemblyInfo.cs
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.csproj.CoreCompileInputs.cache
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.dll
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\ref\DL.dll
+D:\NIX\NIX-Web_App\Web-App\DL\obj\Debug\net5.0\DL.pdb
