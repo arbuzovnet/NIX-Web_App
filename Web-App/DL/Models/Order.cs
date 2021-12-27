@@ -6,8 +6,8 @@ namespace DL.Models
 {
     public class Order
     {
-        [Key]
-        public int OrdersId { get; set; }
+        [Required]
+        public Guid OrdersId { get; set; }
         [Required]
         public decimal Price { get; set; }
         [StringLength(200)]
@@ -17,7 +17,7 @@ namespace DL.Models
 
         public List<Product> Products { get; set; }
 
-        public int ClientClientId { get; set; }
+        public Guid ClientClientId { get; set; }
         public Client Client { get; set; }
     }
 }

@@ -5,8 +5,8 @@ namespace DL.Models
 {
     public class Delivery                               // Поставки
     {
-        [Key]
-        public int DeliveryId { get; set; }
+        [Required]
+        public Guid DeliveryId { get; set; }
         [Required]
         public DateTime Date { get; set; }
         [Required]
@@ -14,7 +14,7 @@ namespace DL.Models
         [Required]
         public int QuantityInStock { get; set; }        // Количество на складе
 
-        public int ProductProductId { get; set; }
+        public Guid ProductProductId { get; set; }
         public Product Product { get; set; }
 
         public int ProviderProviderId { get; set; }

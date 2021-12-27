@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System;
 
 namespace DL.Models
 {
     public class Client
     {
-        [Key]
-        public int ClientId { get; set; }
+        [Required]
+        public Guid ClientId { get; set; }
         [Required]
         [StringLength(100, MinimumLength = 5)]
         public string FullName { get; set; }
@@ -14,7 +15,7 @@ namespace DL.Models
         [Phone]
         public string Phone { get; set; }
         [Required]
-        [EmailAddress]
+        [EmailAddress] // Регулярка
         public string Mail { get; set; }
 
         public List<Order> Orders { get; set; }
