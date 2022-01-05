@@ -13,6 +13,7 @@ namespace DL.Interfaces
         bool Add(T entity);
         bool AddRange(IEnumerable<T> entities);
 
+        bool RemoveById(Guid id);
         bool Remove(T entity);
         bool RemoveRange(IEnumerable<T> entities);
     }

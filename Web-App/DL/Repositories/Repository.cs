@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using DL.Context;
+using DL.EF;
 using DL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DL.Repositories
@@ -12,49 +13,58 @@ namespace DL.Repositories
     {
         protected ApplicationContext appContext;
         protected readonly ILogger logger;
+        protected DbSet<T> dbSet;
         
         public Repository(ApplicationContext applicationContext, ILogger log)
         {
             appContext = applicationContext;
             logger = log;
+            dbSet = appContext.Set<T>();
         }
 
         public virtual bool Add(T entity)
         {
-            appContext.Set<T>().Add(entity);
+            dbSet.Add(entity);
             return true;
         }
 
         public virtual bool AddRange(IEnumerable<T> entities)
         {
-            appContext.Set<T>().AddRange(entities);
+            dbSet.AddRange(entities);
             return true;
         }
 
         public virtual IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
-            return appContext.Set<T>().Where(expression);
+            return dbSet.Where(expression);
         }
 
         public virtual T Get(Guid id)
         {
-            return appContext.Set<T>().Find(id);
+            return dbSet.Find(id);
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-            return appContext.Set<T>().ToList();
+            return dbSet.ToList();
+        }
+
+        public virtual bool RemoveById(Guid id)
+        {
+            T entityToDelete = dbSet.Find(id);
+            dbSet.Remove(entityToDelete);
+            return true;
         }
 
         public virtual bool Remove(T entity)
         {
-            appContext.Set<T>().Remove(entity);
+            dbSet.Remove(entity);
             return true;
         }
 
         public virtual bool RemoveRange(IEnumerable<T> entities)
         {
-            appContext.Set<T>().RemoveRange(entities);
+            dbSet.RemoveRange(entities);
             return true;
         }
     }

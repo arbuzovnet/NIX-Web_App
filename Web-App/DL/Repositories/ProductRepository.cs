@@ -1,6 +1,6 @@
 ﻿using DL.Models;
 using DL.Interfaces;
-using DL.Context;
+using DL.EF;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace DL.Repositories
         {
             try
             {
-                appContext.Set<Product>().Add(entity);
+                dbSet.Add(entity);
                 return true;
             }
             catch (Exception ex)
@@ -35,7 +35,7 @@ namespace DL.Repositories
         {
             try
             {
-                appContext.Set<Product>().AddRange(entities);
+                dbSet.AddRange(entities);
                 return true;
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace DL.Repositories
         {
             try
             {
-                return appContext.Set<Product>().Where(expression);
+                return dbSet.Where(expression);
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace DL.Repositories
         {
             try
             {
-                return appContext.Set<Product>().Find(id);
+                return dbSet.Find(id);
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace DL.Repositories
         {
             try
             {
-                return appContext.Set<Product>().ToList();
+                return dbSet.ToList();
             }
             catch (Exception ex)
             {
@@ -84,15 +84,35 @@ namespace DL.Repositories
             }
         }
 
+        public override bool RemoveById(Guid id)
+        {
+            try
+            {
+                var entityToDelete = dbSet.Where(x => x.ProductId == id)
+                                                    .FirstOrDefault();
+                if (entityToDelete != null)
+                {
+                    dbSet.Remove(entityToDelete);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} RemoveById method error", typeof(ProductRepository));
+                return false;
+            }
+        }
+
         public override bool Remove(Product entity)
         {
             try
             {
-                var exist = appContext.Set<Product>().Where(x => x.ProductId == entity.ProductId)
+                var exist = dbSet.Where(x => x.ProductId == entity.ProductId)
                                                     .FirstOrDefault();
                 if (exist != null)
                 {
-                    appContext.Set<Product>().Remove(entity);
+                    dbSet.Remove(entity);
                     return true;
                 }
                 return false;
@@ -110,13 +130,13 @@ namespace DL.Repositories
             {
                 foreach(Product product in entities)
                 {
-                    var exist = appContext.Set<Product>().Where(x => x.ProductId == product.ProductId)
+                    var exist = dbSet.Where(x => x.ProductId == product.ProductId)
                                     .FirstOrDefault();
                     if (exist == null)
                         return false;
                 }
 
-                appContext.Set<Product>().RemoveRange(entities);
+                dbSet.RemoveRange(entities);
                 return true;
             }
             catch (Exception ex)
