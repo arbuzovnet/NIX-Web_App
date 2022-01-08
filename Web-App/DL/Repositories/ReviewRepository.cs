@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DL.Repositories
 {
-    class ReviewRepository : Repository<Review>, IReviewRepository
+    public class ReviewRepository : Repository<Review>, IReviewRepository
     {
         public ReviewRepository(ApplicationContext applicationContext, ILogger logger)
             : base(applicationContext, logger)

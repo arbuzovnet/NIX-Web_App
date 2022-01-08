@@ -10,3 +10,6 @@ D:\NIX\NIX-Web_App\Web-App\BL\obj\Debug\net5.0\BL.csproj.CoreCompileInputs.cache
 D:\NIX\NIX-Web_App\Web-App\BL\obj\Debug\net5.0\BL.dll
 D:\NIX\NIX-Web_App\Web-App\BL\obj\Debug\net5.0\ref\BL.dll
 D:\NIX\NIX-Web_App\Web-App\BL\obj\Debug\net5.0\BL.pdb
+D:\NIX\NIX-Web_App\Web-App\BL\bin\Debug\net5.0\DL.dll
+D:\NIX\NIX-Web_App\Web-App\BL\bin\Debug\net5.0\DL.pdb
+D:\NIX\NIX-Web_App\Web-App\BL\obj\Debug\net5.0\BL.csproj.CopyComplete

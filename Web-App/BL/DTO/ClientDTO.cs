@@ -8,5 +8,9 @@ namespace BL.DTO
 {
     public class ClientDTO
     {
+        public Guid ClientId { get; set; }
+        public string FullName { get; set; }
+        public string Phone { get; set; }
+        public string Mail { get; set; }
     }
 }

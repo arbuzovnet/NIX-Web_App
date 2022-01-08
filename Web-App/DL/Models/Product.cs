@@ -14,7 +14,7 @@ namespace DL.Models
         public string Name { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public Image Image { get; set; }
+        public string Image { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
 

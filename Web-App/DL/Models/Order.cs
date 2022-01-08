@@ -7,7 +7,7 @@ namespace DL.Models
     public class Order
     {
         [Required]
-        public Guid OrdersId { get; set; }
+        public Guid OrderId { get; set; }
         [Required]
         public decimal Price { get; set; }
         [StringLength(200)]

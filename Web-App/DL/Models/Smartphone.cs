@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DL.Models
 {
-    public class Smartphone:Product
+    [Table("Smartphones")]
+    public class Smartphone : Product
     {
         [Required]
         public int BuiltMemory { get; set; }        // Встроенная память

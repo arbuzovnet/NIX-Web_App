@@ -15,10 +15,10 @@ namespace DL.Models
         [Required]
         public DateTime Date { get; set; }
 
-        public int ProductProductId { get; set; }
+        public Guid ProductProductId { get; set; }
         public Product Product { get; set; }
 
-        public int ClientClientId { get; set; }
+        public Guid ClientClientId { get; set; }
         public Client Client { get; set; }
     }
 }

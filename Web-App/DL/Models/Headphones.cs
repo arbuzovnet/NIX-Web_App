@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DL.Models
 {
+    [Table("Headphones")]
     public class Headphones:Product
     {
         [Required]

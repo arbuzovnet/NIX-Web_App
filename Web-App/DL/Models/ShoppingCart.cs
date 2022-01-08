@@ -7,7 +7,7 @@ namespace DL.Models
     public class ShoppingCart
     {
         [Required]
-        public Guid UserId { get; set; }
+        public Guid ShoppingCartId { get; set; }
         [Range(1, 30)]
         public int Count { get; set; }                  // Количество товара в корзине
 
