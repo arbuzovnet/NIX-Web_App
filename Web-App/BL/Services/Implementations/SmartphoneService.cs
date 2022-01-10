@@ -3,16 +3,24 @@ using BL.DTO;
 using BL.Services.Interfaces;
 using DL.EF;
 using DL.Models;
+using DL.UOW;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BL.Services.Implementations
 {
-    public class SmartphoneService : ProductService, ISmartphone
+    public class SmartphoneService : ISmartphone
     {
+        private protected UnitOfWork unitOfWork;
+        private protected readonly IMapper mapper;
+
         public SmartphoneService(ApplicationContext applicationContext, ILoggerFactory loggerFactory, IMapper mapper)
-            :base(applicationContext, loggerFactory, mapper)
-        {        }
+        {
+            unitOfWork = new(applicationContext, loggerFactory);
+            this.mapper = mapper;
+        }
 
         public IEnumerable<SmartphoneDTO> GetSmartphoneByBuiltMemory(int builtMemory)
         {
@@ -59,6 +67,95 @@ namespace BL.Services.Implementations
             if (!string.IsNullOrEmpty(resolution))
             {
                 return mapper.Map<IEnumerable<Smartphone>, IEnumerable<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.Find(n => n.Resolution == resolution));
+            }
+            else
+                return new List<SmartphoneDTO>();
+        }
+
+        public IEnumerable<SmartphoneDTO> GetCheapToExpensive()
+        {
+            return mapper.Map<IEnumerable<Smartphone>, List<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.GetAll().OrderBy(u => u.Price));
+        }
+
+        public IEnumerable<SmartphoneDTO> GetExpensiveToCheap()
+        {
+            return mapper.Map<IEnumerable<Smartphone>, List<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.GetAll().OrderByDescending(u => u.Price));
+        }
+
+        public IEnumerable<SmartphoneDTO> GetByReview()
+        {
+            List<Smartphone> products = unitOfWork.SmartphoneRepository.GetAll().OrderBy(n => n.Reviews.Count).ToList();
+            return mapper.Map<List<Smartphone>, IList<SmartphoneDTO>>(products);
+        }
+
+        public IEnumerable<SmartphoneDTO> GetPopular()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetProductRating(Guid productId)
+        {
+            var product = unitOfWork.SmartphoneRepository.Get(productId);
+            if (product != null)
+            {
+                List<Review> resultList = unitOfWork.ReviewRepository.Find(n => n.ProductProductId == productId).ToList();
+                return resultList.Average(n => n.Rating);
+            }
+            else
+                return 0;
+        }
+
+        public int GetReviewsNumber(Guid productId)
+        {
+            var products = unitOfWork.SmartphoneRepository.Get(productId);
+            if (products != null)
+            {
+                int count = unitOfWork.ReviewRepository.GetAll().Count(n => n.ProductProductId == productId);
+                return count;
+            }
+            else
+                return 0;
+        }
+
+        public SmartphoneDTO GetProduct(Guid productId)
+        {
+            var product = unitOfWork.SmartphoneRepository.Get(productId);
+            if (product != null)
+                return mapper.Map<Smartphone, SmartphoneDTO>(product);
+            else
+                return new SmartphoneDTO();
+        }
+
+        public IEnumerable<SmartphoneDTO> GetAllProducts()
+        {
+            return mapper.Map<IEnumerable<Smartphone>, List<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.GetAll());
+        }
+
+        public SmartphoneDTO FindByName(string productName)
+        {
+            if (!string.IsNullOrEmpty(productName))
+            {
+                List<Smartphone> products = unitOfWork.SmartphoneRepository.Find(n => n.Name == productName).ToList();
+                if (products.Count != 0)
+                    return mapper.Map<Smartphone, SmartphoneDTO>(products[0]);
+                else
+                    return new SmartphoneDTO();
+            }
+            else
+                return new SmartphoneDTO();
+        }
+
+        public IEnumerable<SmartphoneDTO> GetProductsByBrand(string modelName)
+        {
+            if (!string.IsNullOrEmpty(modelName))
+            {
+                List<Smartphone> products = unitOfWork.SmartphoneRepository.Find(n => n.Trademark.Name == modelName).ToList();
+                if (products.Count != 0)
+                {
+                    return mapper.Map<List<Smartphone>, IList<SmartphoneDTO>>(products);
+                }
+                else
+                    return new List<SmartphoneDTO>();
             }
             else
                 return new List<SmartphoneDTO>();

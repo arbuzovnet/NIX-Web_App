@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.Services.Interfaces
 {
-    public interface ICharger : IProduct
+    public interface ICharger : IProduct<ChargerDTO>
     {
         IEnumerable<ChargerDTO> GetChargerByType(string chargerType);             // Получить зарядки по типу
         IEnumerable<ChargerDTO> GetChargerByCableType(string chargerCableType);   // Получить зарядки по типу кабеля

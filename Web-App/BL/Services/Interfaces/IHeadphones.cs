@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.Services.Interfaces
 {
-    public interface IHeadphones : IProduct
+    public interface IHeadphones : IProduct<HeadphonesDTO>
     {
         IEnumerable<HeadphonesDTO> GetHeadphonesByType(string headType);                  // Получить наушники по их типу
         IEnumerable<HeadphonesDTO> GetHeadphonesByConnectionType(string connectionType);  // Получить наушники по типу подключения

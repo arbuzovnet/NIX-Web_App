@@ -6,9 +6,9 @@ namespace BL.Services.Interfaces
 {
     interface IClient
     {
-        IEnumerable<OrderDTO> GetOrders();                     // Получить список всех заказов
-        void AddItemToCart(ProductDTO product);                // Добавить продукт в корзину
-        ClientDTO GetClientProfile(Guid clientId);             // Просмотреть профиль
-        IEnumerable<ProductDTO> ViewedProducts();              // Просмотренные товары
+        IEnumerable<OrderDTO> GetOrders(Guid clientId);                     // Получить список всех заказов
+        void AddItemToCart(ProductDTO product);                             // Добавить продукт в корзину
+        ClientDTO GetClientProfile(Guid clientId);                          // Просмотреть профиль
+        IEnumerable<ProductDTO> ViewedProducts();                           // Просмотренные товары
     }
 }

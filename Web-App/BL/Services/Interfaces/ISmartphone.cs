@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.Services.Interfaces
 {
-    public interface ISmartphone : IProduct
+    public interface ISmartphone : IProduct<SmartphoneDTO>
     {
         IEnumerable<SmartphoneDTO> GetSmartphoneByBuiltMemory(int builtMemory);           // Получить смартфоны по количеству встроенной памяти
         IEnumerable<SmartphoneDTO> GetSmartphoneByRAM(int ram);                           // Получить смартфоны по количесту ОЗУ

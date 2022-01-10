@@ -23,12 +23,12 @@ namespace BL.Services.Implementations
 
         public IEnumerable<ReviewDTO> DisplayHighRatings()
         {
-            return mapper.Map<List<Review>, IList<ReviewDTO>>(unitOfWork.ReviewRepository.GetAll().Where(n => n.Rating > 3).ToList());
+            return mapper.Map<List<Review>, List<ReviewDTO>>(unitOfWork.ReviewRepository.GetAll().Where(n => n.Rating > 3).ToList());
         }
 
         public IEnumerable<ReviewDTO> DisplayLowRatings()
         {
-            return mapper.Map<List<Review>, IList<ReviewDTO>>(unitOfWork.ReviewRepository.GetAll().Where(n => n.Rating <= 3).ToList());
+            return mapper.Map<List<Review>, List<ReviewDTO>>(unitOfWork.ReviewRepository.GetAll().Where(n => n.Rating <= 3).ToList());
         }
     }
 }

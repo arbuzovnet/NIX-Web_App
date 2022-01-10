@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BL.Services.Interfaces
 {
-    public interface ICase : IProduct
+    public interface ICase : IProduct<CaseDTO>
     {
         IEnumerable<CaseDTO> GetCaseByType(string caseType);            // Получить чехол по типу
         IEnumerable<CaseDTO> GetCaseByColor(string caseColor);          // Получить чехол по цвету

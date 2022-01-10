@@ -4,17 +4,31 @@ using System.Collections.Generic;
 
 namespace BL.Services.Interfaces
 {
-    public interface IProduct
+    public interface IProduct<T> where T : class
     {
-        IEnumerable<ProductDTO> GetCheapToExpensive();                  // Сортировка от дешевых к дорогим продуктам
-        IEnumerable<ProductDTO> GetExpensiveToCheap();                  // Сортировка от дорогих к дешевым продуктам
-        IEnumerable<ProductDTO> GetByReview();                          // Сортировка по количеству отзывов
-        IEnumerable<ProductDTO> GetPopular();                           // Сортировка по популярности (проверять на наличие в заказах)
+        IEnumerable<T> GetCheapToExpensive();                  // Сортировка от дешевых к дорогим продуктам
+        IEnumerable<T> GetExpensiveToCheap();                  // Сортировка от дорогих к дешевым продуктам
+        IEnumerable<T> GetByReview();                          // Сортировка по количеству отзывов
+        IEnumerable<T> GetPopular();                           // Сортировка по популярности (проверять на наличие в заказах)
         double GetProductRating(Guid productId);                         // Средний рейтинг продукта
         int GetReviewsNumber(Guid productId);                            // Получить количество отзывов продукта
-        ProductDTO GetProduct(Guid productId);                           // Получить информацию о конкретном продукте
-        IEnumerable<ProductDTO> GetAllProducts();                       // Получить все продукты
-        ProductDTO FindByName(string productName);                      // Поиск по названию продукта
-        IEnumerable<ProductDTO> GetProductsByBrand(string modelName);   // Получить продукт по марке производителя
+        T GetProduct(Guid productId);                           // Получить информацию о конкретном продукте
+        IEnumerable<T> GetAllProducts();                       // Получить все продукты
+        T FindByName(string productName);                      // Поиск по названию продукта
+        IEnumerable<T> GetProductsByBrand(string modelName);   // Получить продукт по марке производителя
+
+
+
+
+        //IEnumerable<T> GetCheapToExpensive();                  // Сортировка от дешевых к дорогим продуктам
+        //IEnumerable<T> GetExpensiveToCheap();                  // Сортировка от дорогих к дешевым продуктам
+        //IEnumerable<T> GetByReview();                          // Сортировка по количеству отзывов
+        //IEnumerable<T> GetPopular();                           // Сортировка по популярности (проверять на наличие в заказах)
+        //double GetProductRating(Guid productId);                         // Средний рейтинг продукта
+        //int GetReviewsNumber(Guid productId);                            // Получить количество отзывов продукта
+        //T GetProduct(Guid productId);                           // Получить информацию о конкретном продукте
+        //IEnumerable<T> GetAllProducts();                       // Получить все продукты
+        //T FindByName(string productName);                      // Поиск по названию продукта
+        //IEnumerable<T> GetProductsByBrand(string modelName);   // Получить продукт по марке производителя
     }
 }
