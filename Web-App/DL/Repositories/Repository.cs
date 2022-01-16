@@ -67,5 +67,12 @@ namespace DL.Repositories
             dbSet.RemoveRange(entities);
             return true;
         }
+
+        public virtual bool Update(T entity)
+        {
+            dbSet.Attach(entity);
+            appContext.Entry(entity).State = EntityState.Modified;
+            return true;
+        }
     }
 }

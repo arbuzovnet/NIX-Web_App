@@ -16,6 +16,7 @@ namespace BL.AutoMapper
             CreateMap<Headphones, HeadphonesDTO>();
             CreateMap<Charger, ChargerDTO>();
             CreateMap<Review, ReviewDTO>();
+            CreateMap<ShoppingCart, ShoppingCartDTO>();
         }
     }
 }

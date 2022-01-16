@@ -11,13 +11,12 @@ namespace DL.Models
         [Required]
         [StringLength(100, MinimumLength = 5)]
         public string FullName { get; set; }
-        [Required]
-        [Phone]
         public string Phone { get; set; }
-        [Required]
-        [EmailAddress] // Регулярка
         public string Mail { get; set; }
-
+        [Required]
+        public DateTime Birthday { get; set; }
+        public string Gender { get; set; }
+        public string DeliveryAddress { get; set; }
         public List<Order> Orders { get; set; }
 
         public List<Review> Reviews { get; set; }

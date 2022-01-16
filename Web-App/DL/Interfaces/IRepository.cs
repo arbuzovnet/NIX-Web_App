@@ -16,6 +16,8 @@ namespace DL.Interfaces
         bool RemoveById(Guid id);
         bool Remove(T entity);
         bool RemoveRange(IEnumerable<T> entities);
+
+        bool Update(T entity);
     }
 }
 

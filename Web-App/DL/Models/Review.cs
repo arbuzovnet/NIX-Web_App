@@ -14,7 +14,7 @@ namespace DL.Models
         public string ReviewText { get; set; }
         [Required]
         public DateTime Date { get; set; }
-
+        public bool ChangeStatus { get; set; }
         public Guid ProductProductId { get; set; }
         public Product Product { get; set; }
 

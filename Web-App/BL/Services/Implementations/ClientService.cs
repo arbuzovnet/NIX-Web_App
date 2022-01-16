@@ -22,11 +22,6 @@ namespace BL.Services.Implementations
             this.mapper = mapper;
         }
 
-        public void AddItemToCart(ProductDTO product)
-        {
-            throw new NotImplementedException();
-        }
-
         public ClientDTO GetClientProfile(Guid clientId)
         {
             Client temp = unitOfWork.ClientRepository.Find(n => n.ClientId == clientId).FirstOrDefault();
@@ -48,6 +43,51 @@ namespace BL.Services.Implementations
         public IEnumerable<ProductDTO> ViewedProducts()
         {
             throw new NotImplementedException();
+        }
+
+        public void EditPersonalData(Guid clientId, string name, DateTime dateTime, string gender)
+        {
+            if (!String.IsNullOrWhiteSpace(name))
+            {
+                Client client = unitOfWork.ClientRepository.Get(clientId);
+                client.FullName = name;
+                client.Birthday = dateTime;
+                client.Gender = gender;
+                unitOfWork.ClientRepository.Update(client);
+                unitOfWork.Save();
+            }
+        }
+
+        public void EditDeliveryAddress(Guid clientId, string address)
+        {
+            if (!String.IsNullOrWhiteSpace(address))
+            {
+                Client client = unitOfWork.ClientRepository.Get(clientId);
+                client.DeliveryAddress = address;
+                unitOfWork.ClientRepository.Update(client);
+                unitOfWork.Save();
+            }
+        }
+
+        public void ChangeContacts(Guid clientId, string phone, string mail)
+        {
+            if (!String.IsNullOrWhiteSpace(phone) && !String.IsNullOrWhiteSpace(mail))
+            {
+                Client client = unitOfWork.ClientRepository.Get(clientId);
+                client.Phone = phone;
+                client.Mail = mail;
+                unitOfWork.ClientRepository.Update(client);
+                unitOfWork.Save();
+            }
+        }
+
+        public IEnumerable<ReviewDTO> GetClientReview(Guid clientId)
+        {
+            Client temp = unitOfWork.ClientRepository.Find(n => n.ClientId == clientId).FirstOrDefault();
+            if (temp != null)
+                return mapper.Map<IEnumerable<Review>, IEnumerable<ReviewDTO>>(unitOfWork.ReviewRepository.Find(n => n.ClientClientId == clientId));
+            else
+                return new List<ReviewDTO>();
         }
     }
 }

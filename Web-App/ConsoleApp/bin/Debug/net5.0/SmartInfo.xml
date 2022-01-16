@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Smartphone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProductId>ba8d2048-a7fa-4144-8b28-a3bd32258c61</ProductId>
+  <Name>9T</Name>
+  <Price>100</Price>
+  <Description>It's Xiaomi smartphone</Description>
+  <TrademarkTrademarkId>121b2ef8-779a-4f75-a828-a05f6fe81b6d</TrademarkTrademarkId>
+  <BuiltMemory>64</BuiltMemory>
+  <RAM>4</RAM>
+  <Matrix>IPS</Matrix>
+  <Resolution>100x100</Resolution>
+  <OS>Android</OS>
+</Smartphone>
