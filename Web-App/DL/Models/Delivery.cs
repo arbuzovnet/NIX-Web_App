@@ -11,8 +11,8 @@ namespace DL.Models
         public DateTime Date { get; set; }
         [Required]
         public int NumberOfGoodsDelivered { get; set; } // Количество доставленных товаров
-        [Required]
-        public int QuantityInStock { get; set; }        // Количество на складе
+        //[Required]
+        //public int QuantityInStock { get; set; }        // Количество на складе
 
         public Guid ProductProductId { get; set; }
         public Product Product { get; set; }

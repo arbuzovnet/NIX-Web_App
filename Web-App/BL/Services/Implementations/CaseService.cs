@@ -149,5 +149,17 @@ namespace BL.Services.Implementations
             else
                 return 0;
         }
+        public bool ProductAvailability(Guid productId)
+        {
+            if (QuantityInStock(productId) > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public int QuantityInStock(Guid productId)
+        {
+            return unitOfWork.DeliveryRepository.Find(n => n.ProductProductId == productId).Sum(s => s.NumberOfGoodsDelivered);
+        }
     }
 }
