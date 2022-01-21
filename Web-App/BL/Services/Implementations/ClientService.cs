@@ -31,15 +31,6 @@ namespace BL.Services.Implementations
                 return new ClientDTO();
         }
 
-        public IEnumerable<OrderDTO> GetOrders(Guid clientId)
-        {
-            Client temp = unitOfWork.ClientRepository.Find(n => n.ClientId == clientId).FirstOrDefault();
-            if (temp != null)
-                return mapper.Map<IEnumerable<Order>, IEnumerable<OrderDTO>>(unitOfWork.OrderRepository.Find(n => n.ClientClientId == clientId));
-            else
-                return new List<OrderDTO>();
-        }
-
         public IEnumerable<ProductDTO> ViewedProducts()
         {
             throw new NotImplementedException();

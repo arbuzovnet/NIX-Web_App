@@ -6,7 +6,6 @@ namespace BL.Services.Interfaces
 {
     interface IClient
     {
-        IEnumerable<OrderDTO> GetOrders(Guid clientId);                                         // Получить список всех заказов
         ClientDTO GetClientProfile(Guid clientId);                                              // Просмотреть профиль
         IEnumerable<ProductDTO> ViewedProducts();                                               // Просмотренные товары
         void EditPersonalData(Guid clientId, string name, DateTime dateTime, string gender);    // Изменить персональные данные

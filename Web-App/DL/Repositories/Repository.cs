@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DL.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class, new()          // new() ???
     {
         protected ApplicationContext appContext;
         protected readonly ILogger logger;
@@ -24,55 +24,127 @@ namespace DL.Repositories
 
         public virtual bool Add(T entity)
         {
-            dbSet.Add(entity);
-            return true;
+            try
+            {
+                dbSet.Add(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} Add method error", typeof(T));
+                return false;
+            }
         }
 
         public virtual bool AddRange(IEnumerable<T> entities)
         {
-            dbSet.AddRange(entities);
-            return true;
+            try
+            {
+                dbSet.AddRange(entities);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} AddRange method error", typeof(T));
+                return false;
+            }
         }
 
         public virtual IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
-            return dbSet.Where(expression);
+            try
+            {
+                return dbSet.Where(expression);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} Find method error", typeof(T));
+                return new List<T>();
+            }
         }
 
         public virtual T Get(Guid id)
         {
-            return dbSet.Find(id);
+            try
+            {
+                return dbSet.Find(id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} Get method error", typeof(T));
+                return new T();
+            }
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-            return dbSet.ToList();
+            try
+            {
+                return dbSet.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} GetAll method error", typeof(T));
+                return new List<T>();
+            }
         }
 
         public virtual bool RemoveById(Guid id)
         {
-            T entityToDelete = dbSet.Find(id);
-            dbSet.Remove(entityToDelete);
-            return true;
+            try
+            {
+                T entityToDelete = dbSet.Find(id);
+                dbSet.Remove(entityToDelete);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} RemoveById method error", typeof(T));
+                return false;
+            }
         }
 
         public virtual bool Remove(T entity)
         {
-            dbSet.Remove(entity);
-            return true;
+            try
+            {
+                dbSet.Remove(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} Remove method error", typeof(T));
+                return false;
+            }
         }
 
         public virtual bool RemoveRange(IEnumerable<T> entities)
         {
-            dbSet.RemoveRange(entities);
-            return true;
+            try
+            {
+                dbSet.RemoveRange(entities);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} RemoveRange method error", typeof(T));
+                return false;
+            }
         }
 
         public virtual bool Update(T entity)
         {
-            dbSet.Attach(entity);
-            appContext.Entry(entity).State = EntityState.Modified;
-            return true;
+            try
+            {
+                dbSet.Attach(entity);
+                appContext.Entry(entity).State = EntityState.Modified;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "{Repository} Update method error", typeof(T));
+                return false;
+            }
         }
     }
 }

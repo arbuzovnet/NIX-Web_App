@@ -128,7 +128,7 @@ namespace BL.Services.Implementations
 
         public IEnumerable<SmartphoneDTO> GetAllProducts()
         {
-            return mapper.Map<IEnumerable<Smartphone>, List<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.GetAll());
+            return mapper.Map<IEnumerable<Smartphone>, IEnumerable<SmartphoneDTO>>(unitOfWork.SmartphoneRepository.GetAll());
         }
 
         public SmartphoneDTO FindByName(string productName)

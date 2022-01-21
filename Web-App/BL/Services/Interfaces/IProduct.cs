@@ -16,8 +16,8 @@ namespace BL.Services.Interfaces
         IEnumerable<T> GetAllProducts();                       // Получить все продукты
         T FindByName(string productName);                      // Поиск по названию продукта
         IEnumerable<T> GetProductsByBrand(string modelName);   // Получить продукт по марке производителя
-        bool ProductAvailability(Guid productId);               // Наличие продукта на складе
-        int QuantityInStock(Guid productId);                    // Количество продукта на складе
+        bool ProductAvailability(Guid productId);              // Наличие продукта на складе
+        int QuantityInStock(Guid productId);                   // Количество продукта на складе
 
 
         //IEnumerable<T> GetCheapToExpensive();                  // Сортировка от дешевых к дорогим продуктам
