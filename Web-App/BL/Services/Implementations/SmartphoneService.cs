@@ -90,7 +90,29 @@ namespace BL.Services.Implementations
 
         public IEnumerable<SmartphoneDTO> GetPopular()
         {
-            throw new NotImplementedException();
+            List<Order> orders = (List<Order>)unitOfWork.OrderRepository.GetAll();
+            List<Smartphone> products = (List<Smartphone>)unitOfWork.SmartphoneRepository.GetAll();
+            List<int> counts = new List<int>();
+            for (int i = 0; i < 20; i++)
+                counts.Add(0);
+            for (int i = 0; i < orders.Count; i++)
+            {
+                for (int j = 0; j < products.Count; j++)
+                {
+                    if (orders[i].Products.Contains(products[j]))
+                    {
+                        counts[j] += 1;
+                    }
+                }
+            }
+            Dictionary<Smartphone, int> valuePairs = new(products.Count);
+            for (int i = 0; i < valuePairs.Count; i++)
+            {
+                valuePairs.Add(products[i], counts[i]);
+            }
+            var t = valuePairs.OrderBy(n => n.Value);
+            List<Smartphone> res = t.Select(n => n.Key).ToList();
+            return mapper.Map<List<Smartphone>, IEnumerable<SmartphoneDTO>>(res);
         }
 
         public double GetProductRating(Guid productId)

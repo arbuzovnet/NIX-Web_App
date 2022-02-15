@@ -12,5 +12,8 @@ namespace BL.DTO
         public string FullName { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Gender { get; set; }
+        public string DeliveryAddress { get; set; }
     }
 }
